@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" role="img" aria-labelledby="title desc">
+<title id="title">ATSC selective execution with fixed and adaptive thresholds</title>
+<desc id="desc">A Small model runs on each image and state. Its time-aligned prediction history produces 28-dimensional ATSC features. A shared router produces a score, which is compared with a fixed or adaptive threshold. Large runs on the same input only when selected. Otherwise the Small trajectory is retained.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#364a40"/></marker></defs>
+<rect width="960" height="720" fill="white"/>
+<g font-family="Arial, Helvetica, sans-serif" fill="#172b20" text-anchor="middle">
+<text x="480" y="35" font-size="22" font-weight="700">Time-aligned prediction history → selective execution</text>
+<g fill="#f2f7f4" stroke="#5f7869" stroke-width="2">
+<rect x="25" y="75" width="145" height="105" rx="6"/><rect x="210" y="75" width="140" height="105" rx="6"/><rect x="390" y="65" width="270" height="125" rx="6"/><rect x="710" y="75" width="220" height="105" rx="6"/>
+<rect x="350" y="235" width="520" height="155" rx="6"/>
+<path d="M610 425L725 485L610 545L495 485Z"/>
+<rect x="240" y="450" width="185" height="85" rx="6"/><rect x="770" y="450" width="165" height="85" rx="6"/>
+<rect x="480" y="600" width="260" height="65" rx="6"/>
+</g>
+<g font-size="20"><text x="97" y="120">Image + state</text><text x="97" y="150">xₜ</text><text x="280" y="134" font-weight="700">Small</text>
+<text x="525" y="94" font-weight="700">ATSC (28D)</text><text x="525" y="122">Same future time / frame</text><text x="525" y="149">6 current–history pairs</text><text x="525" y="177">Distances, residuals, masks</text>
+<text x="820" y="117" font-weight="700">Shared router</text><text x="820" y="150">Score sₜ</text>
+<text x="610" y="265" font-weight="700">Threshold selection</text>
+<text x="610" y="294">Initial τ₀: top 10% of development scores</text>
+<text x="610" y="323">Fixed: retain τ₀</text>
+<text x="610" y="352">Adaptive: τ₀ for the first 100 frames;</text>
+<text x="610" y="379">then the 10th-largest of 100 prior scores</text>
+<text x="610" y="492" font-size="24">sₜ ≥ τₜ?</text>
+<text x="333" y="484" font-weight="700">Keep Small</text><text x="333" y="513">Use its trajectory</text>
+<text x="853" y="484" font-weight="700">Run Large</text><text x="853" y="513">Same input xₜ</text>
+<text x="610" y="640" font-weight="700">Final predicted trajectory</text>
+</g>
+<g fill="none" stroke="#364a40" stroke-width="2.5" marker-end="url(#arrow)">
+<path d="M170 128H210"/><path d="M350 128H390"/><path d="M660 128H710"/>
+<path d="M820 180V215H945V418H660V451"/><path d="M610 390V425"/>
+<path d="M495 485H425" stroke-dasharray="7 5"/><path d="M725 485H770" stroke-dasharray="7 5"/>
+<path d="M280 180V420H290V450"/><path d="M333 535V632H480"/><path d="M853 535V632H740"/>
+</g>
+<g font-size="17"><text x="233" y="292">Small prediction</text><text x="233" y="316">passed through</text><text x="463" y="470">No</text><text x="747" y="470">Yes</text><text x="672" y="410">τₜ</text><text x="925" y="335">sₜ</text></g>
+<text x="480" y="701" font-size="17" fill="#596b60">Large is executed only after selection. Both policies share ATSC features and router weights.</text>
+</g></svg>
